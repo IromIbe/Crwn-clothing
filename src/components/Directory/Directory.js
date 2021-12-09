@@ -6,8 +6,8 @@ import MenuItem from "../MenuItem/MenuItem.js";
 function Directory() {
   return (
     <div className='directory-menu'>
-      {sections.map(({ id, imageUrl, title, size }) => (
-        <MenuItem key={id} title={title} imageUrl={imageUrl} size={size} />
+      {sections.map(({ id, ...otherSectionProps }) => (
+        <MenuItem key={id} {...otherSectionProps} />
       ))}
     </div>
   );
