@@ -3,15 +3,16 @@ import React from "react";
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
 
-import Homepage from "./components/pages/homepage/Homepage";
-import HatsPage from "./components/pages/HatsPage/HatsPage";
+import Homepage from "./pages/homepage/Homepage";
+import ShopPage from "./pages/shop/ShopPage";
 
 function App() {
   return (
     <div>
       <Routes>
         <Route path='/' element={<Homepage />} />
-        <Route path='/hats' element={<HatsPage />} />
+
+        <Route path='/shop' element={<ShopPage />} />
       </Routes>
     </div>
   );
