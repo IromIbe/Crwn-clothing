@@ -6,6 +6,7 @@ import { Route, Routes } from "react-router-dom";
 import Homepage from "./pages/homepage/Homepage";
 import ShopPage from "./pages/shop/ShopPage";
 import Header from "./components/header-component/Header";
+import SignInAndSignUpPage from "./pages/sign-in And sign-up Page/SignInAndSignUpPage";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path='/' element={<Homepage />} />
 
         <Route path='/shop' element={<ShopPage />} />
+        <Route path='/SignIn' element={<SignInAndSignUpPage />} />
       </Routes>
     </div>
   );
