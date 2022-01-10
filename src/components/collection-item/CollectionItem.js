@@ -1,7 +1,6 @@
 import React from "react";
 import "./CollectionItem.scss";
-export default function CollectionItem({ id, name, imageUrl, price }) {
-  console.log(imageUrl);
+export default function CollectionItem({ name, imageUrl, price }) {
   return (
     <div className='collection-item'>
       <div
