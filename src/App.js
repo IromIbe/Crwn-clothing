@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
-// import { Counter } from "./features/counter/Counter";
+import React, { useEffect } from "react";
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import { auth, createUserProfileDocument } from "./firebase/firebase";
+import { useDispatch, useSelector } from "react-redux";
+import { login } from "./features/redux/users/usersSlice";
 
 import Homepage from "./pages/homepage/Homepage";
 import ShopPage from "./pages/shop/ShopPage";
@@ -11,28 +12,31 @@ import SignInAndSignUpPage from "./pages/sign-in And sign-up Page/SignInAndSignU
 import { onSnapshot } from "firebase/firestore";
 
 function App() {
-  const [currentUser, setCurrentUser] = useState({
-    currentUser: null,
-  });
-
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.users.currentUser);
+  console.log(user, "user");
   function onAuthStateChange() {
     return auth.onAuthStateChanged(async (userAuth) => {
       if (userAuth) {
         const userRef = await createUserProfileDocument(userAuth);
         onSnapshot(userRef, (snapshot) => {
-          setCurrentUser({
-            currentUser: {
+          const user = {
+            displayName: snapshot.data().displayName,
+            email: snapshot.data().email,
+          };
+          dispatch(
+            login({
               id: snapshot.id,
-              ...snapshot.data(),
-            },
-          });
-          console.log(currentUser);
+              ...user,
+            })
+          );
         });
-        console.log(currentUser);
       } else {
-        setCurrentUser({
-          currentUser: userAuth,
-        });
+        dispatch(
+          login({
+            currentUser: userAuth,
+          })
+        );
       }
     });
   }
@@ -46,9 +50,9 @@ function App() {
   return (
     <div>
       {}
-      <Header currentUser={currentUser.currentUser} />
+      <Header />
 
-      {!currentUser.currentUser ? (
+      {user?.currentUser === null ? (
         <SignInAndSignUpPage />
       ) : (
         <>
