@@ -5,7 +5,7 @@ import { ReactComponent as Logo } from "../../assets/crown.svg";
 import { auth } from "../../firebase/firebase";
 import { useSelector } from "react-redux";
 import CartIcon from "../cart-icon component/CartIcon";
-import CartDropdown from "../cart-dropDown component/CartDropdown";
+import CartDropdown from "../cart-dropDown/CartDropdown";
 
 function Header() {
   const showCartItems = useSelector((state) => state.cart.hidden);
@@ -23,7 +23,7 @@ function Header() {
         <Link to='/contact' className='option'>
           CONTACT
         </Link>
-        {user ? (
+        {user?.currentUser !== null ? (
           <div className='option' onClick={() => auth.signOut()}>
             SIGN OUT
           </div>

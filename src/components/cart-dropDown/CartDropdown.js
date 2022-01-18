@@ -6,7 +6,7 @@ function CartDropdown() {
   return (
     <div className='cart-dropdown'>
       <div className='cart-items'> </div>
-      <CustomButton>CHECK OUT</CustomButton>
+      <CustomButton>GO TO CHECKOUT</CustomButton>
     </div>
   );
 }
