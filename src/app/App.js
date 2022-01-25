@@ -4,7 +4,7 @@ import { Route, Routes } from "react-router-dom";
 import { auth, createUserProfileDocument } from "../firebase/firebase";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../features/redux/users/usersSlice";
-
+import Checkout from "../components/checkout/Checkout";
 import Homepage from "../pages/homepage/Homepage";
 import ShopPage from "../pages/shop/ShopPage";
 import Header from "../components/header-component/Header";
@@ -56,9 +56,11 @@ function App() {
       ) : (
         <>
           <Routes>
-            <Route path='/' element={<Homepage />} />
+            <Route path="/" element={<Homepage />} />
 
-            <Route path='/shop' element={<ShopPage />} />
+            <Route path="/shop" element={<ShopPage />} />
+            <Route path="/shop" element={<ShopPage />} />
+            <Route path="/checkout" element={<Checkout />} />
           </Routes>
         </>
       )}
