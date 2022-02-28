@@ -14,7 +14,7 @@ function CartDropdown() {
   return (
     <div className="cart-dropdown">
       <div className="cart-items">
-        {cartItems.length ? (
+        {cartItems ? (
           cartItems.map((cartItem) => (
             <CartItem key={cartItem.id} item={cartItem} />
           ))
