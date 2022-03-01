@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { addItemToCart } from "./cartUtils";
+import { addItemToCart, removeItemsFromCart } from "./cartUtils";
 export const incrementAsync = createAsyncThunk("counter/fetchCount");
 
 const initialState = {
@@ -19,12 +19,17 @@ export const cartSlice = createSlice({
       state.cartItems = addItemToCart(state.cartItems, action.payload);
     },
     clearItemFromCart: (state, action) => {
-      return state.cartItems.filter(
-        (cartItem) => cartItem.id !== action.payload
+      const nextCartItems = state.cartItems.filter(
+        (item) => item.id !== action.payload.id
       );
+      state.cartItems = nextCartItems;
+    },
+    reduceItem: (state, action) => {
+      state.cartItems = removeItemsFromCart(state.cartItems, action.payload);
     },
   },
 });
 
 export default cartSlice.reducer;
-export const { toggle_cart, addItem, clearItemFromCart } = cartSlice.actions;
+export const { toggle_cart, addItem, clearItemFromCart, reduceItem } =
+  cartSlice.actions;
