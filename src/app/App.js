@@ -44,7 +44,7 @@ function App() {
     return () => {
       unsubscribe();
     };
-  }, [onAuthStateChange]);
+  });
 
   return (
     <div>
