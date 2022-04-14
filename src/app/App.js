@@ -8,6 +8,7 @@ import Checkout from "../components/checkout/Checkout";
 import Homepage from "../pages/homepage/Homepage";
 import ShopPage from "../pages/shop/ShopPage";
 import Header from "../components/header-component/Header";
+// import CollectionPage from "../pages/collection/Collection";
 import SignInAndSignUpPage from "../pages/sign-in And sign-up Page/SignInAndSignUpPage";
 import { onSnapshot } from "firebase/firestore";
 
@@ -52,17 +53,15 @@ function App() {
       <Header />
 
       {user?.currentUser === null ? (
-        <SignInAndSignUpPage />
-      ) : (
         <>
           <Routes>
             <Route path="/" element={<Homepage />} />
-
-            <Route path="/shop" element={<ShopPage />} />
-            <Route path="/shop" element={<ShopPage />} />
-            <Route path="/checkout" element={<Checkout />} />
+            <Route path="shop/*" element={<ShopPage />} />
+            <Route path="checkout" element={<Checkout />} />
           </Routes>
         </>
+      ) : (
+        <SignInAndSignUpPage />
       )}
     </div>
   );
