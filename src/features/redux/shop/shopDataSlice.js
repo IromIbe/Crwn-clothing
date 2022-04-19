@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import SHOP_DATA from "./shopData";
+import SHOP_DATA from "../../../pages/shop/shopData";
 
 export const incrementAsync = createAsyncThunk("counter/fetchCount");
 

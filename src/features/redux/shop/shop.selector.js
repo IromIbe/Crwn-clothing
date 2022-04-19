@@ -1,14 +1,6 @@
 import { createSelector } from "@reduxjs/toolkit";
 // import shopDataSlice from "./shopDataSlice";
 
-const collection_Id_Map = {
-  hats: 1,
-  sneakers: 2,
-  jackets: 3,
-  womens: 4,
-  mens: 5,
-};
-
 const selectShop = (state) => state.shop;
 
 export const selectCollections = createSelector(
@@ -23,8 +15,4 @@ export const selectCollectionsForPreview = createSelector(
 );
 
 export const selectShopCollection = (collectionUrlparam) =>
-  createSelector([selectCollections], (data) =>
-    data.find(
-      (dataItem) => dataItem.id === collection_Id_Map[collectionUrlparam]
-    )
-  );
+  createSelector([selectCollections], (data) => data[collectionUrlparam]);
