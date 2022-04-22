@@ -1,5 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { combineReducers } from "@reduxjs/toolkit";
+import logger from "redux-logger";
 import cartReducer from "./redux/cart/cartSlice";
 import usersReducer from "./redux/users/usersSlice";
 import directoryReducer from "./redux/directory/DirectoryDataSlice";
@@ -12,6 +13,11 @@ const persistConfig = {
   storage,
   whiteList: ["cart"],
 };
+//  optimizing production build
+const middleware = [];
+if (process.env.NODE_ENV === "development") {
+  middleware.push(logger);
+}
 
 const reducers = combineReducers({
   users: usersReducer,
