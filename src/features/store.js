@@ -1,4 +1,4 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { configureStore, applyMiddleware } from "@reduxjs/toolkit";
 import { combineReducers } from "@reduxjs/toolkit";
 import logger from "redux-logger";
 import cartReducer from "./redux/cart/cartSlice";
@@ -14,9 +14,9 @@ const persistConfig = {
   whiteList: ["cart"],
 };
 //  optimizing production build
-const middleware = [];
+const middlewares = [];
 if (process.env.NODE_ENV === "development") {
-  middleware.push(logger);
+  middlewares.push(logger);
 }
 
 const reducers = combineReducers({
@@ -28,8 +28,11 @@ const reducers = combineReducers({
 
 const persistedReducer = persistReducer(persistConfig, reducers);
 
-const store = configureStore({
-  reducer: persistedReducer,
-});
+const store = configureStore(
+  {
+    reducer: persistedReducer,
+  },
+  applyMiddleware(...middlewares)
+);
 
 export default store;
