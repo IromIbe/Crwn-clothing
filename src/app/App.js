@@ -52,16 +52,15 @@ function App() {
       {}
       <Header />
 
-      {user?.currentUser === null ? (
-        <SignInAndSignUpPage />
-      ) : (
-        <>
-          <Routes>
-            <Route path='/' element={<Homepage />} />
+      {user?.currentUser !== null ? (
+        <Routes>
+        <Route path='/' element={<Homepage />} />
             <Route path='shop/*' element={<ShopPage />} />
             <Route path='checkout' element={<Checkout />} />
-          </Routes>
-        </>
+        </Routes>
+      ) : (
+  <SignInAndSignUpPage />
+
       )}
     </div>
   );

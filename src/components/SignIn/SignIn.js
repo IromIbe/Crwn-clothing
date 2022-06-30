@@ -26,7 +26,9 @@ function SignIn() {
   };
 
   const handleChange = (e) => {
-    const { value, name } = e.target;
+    const name = e.target.name;
+
+    const value = e.target.value;
 
     setCredentials((prevState) => ({
       ...prevState,
@@ -43,7 +45,7 @@ function SignIn() {
         <FormInput
           type='email'
           name='email'
-          value={credentials.email}
+          // value={credentials.email}
           handleChange={handleChange}
           required
           label='email'
@@ -52,7 +54,7 @@ function SignIn() {
         <FormInput
           type='password'
           name='password'
-          value={credentials.password}
+          // value={credentials.password}
           handleChange={handleChange}
           required
           label='password'
